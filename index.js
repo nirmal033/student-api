@@ -42,9 +42,15 @@ app.post("/api/students", async (req, res) => {
     try {
         const { name, email, course, age } = req.body;
 
-        if (!name || !email || !course || !age === undefined) {
+        if (!name || !email || !course || age === undefined) {
             return res.status(400).json({
                 message: "Please fill required fields",
+            });
+        }
+
+        if (age <= 0) {
+            return res.status(400).json({
+                message: "Age must be greater than 0",
             });
         }
 
