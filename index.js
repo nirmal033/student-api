@@ -42,38 +42,46 @@ app.post("/api/students", async (req, res) => {
     try {
         const { name, email, course, age } = req.body;
 
-        if (!name || !email) {
+        if (!name || !email || !course || !age) {
             return res.status(400).json({
-                message: "Name and email are required fields",
+                message: "Please fill required fields",
             });
         }
 
-        if (email) {
-            const existingStudent = await Student.findOne({ email });
-            if (existingStudent) {
-                return res.status(400).json({
-                    message: "Email already exist",
-                });
-            }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            const student = await Student.create({
-                name,
-                email,
-                course,
-                age,
-            });
-            res.status(201).json({
-                messsage: "Studnent created succesfully",
-                student,
+        if (!emailRegex.test(email)) {
+            return res.status(400).json({
+                message: "Invalid email format",
             });
         }
+
+        const existingStudent = await Student.findOne({ email });
+
+        if (existingStudent) {
+            return res.status(400).json({
+                message: "Email already exist",
+            });
+        }
+
+        const student = await Student.create({
+            name,
+            email,
+            course,
+            age,
+        });
+
+        res.status(201).json({
+            message: "Student created successfully",
+            student,
+        });
+
     } catch (err) {
         res.status(500).json({
             message: err.message,
         });
     }
 });
-
 // ===================== Get all students ===================================
 
 app.get("/api/students", async (req, res) => {
