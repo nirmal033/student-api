@@ -62,7 +62,7 @@ Student-api/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/nirmal033/student-api.git
 ```
 
 ### 2. Go to the project folder
@@ -83,7 +83,7 @@ Create a `.env` file in the root folder:
 
 ```env
 PORT=3000
-MONGO_URI=mongodb://127.0.0.1:27017/studentDB
+MONGODB_URI=mongodb://127.0.0.1:27017/studentDB
 ```
 
 If you are using MongoDB Atlas, replace `MONGO_URI` with your MongoDB Atlas connection string.
@@ -116,9 +116,9 @@ Request body:
 
 ```json
 {
-  "name": "Nirmal",
-  "email": "nirmal@gmail.com",
-  "course": "MCA",
+  "name": "demo",
+  "email": "demo@gmail.com",
+  "course": "computer science",
   "age": 24
 }
 ```
