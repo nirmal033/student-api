@@ -18,7 +18,7 @@ This project is a simple REST API for managing a list of students. The API suppo
 | DELETE | `/api/students/:id`| Delete a student by ID         |
 
 ## Schema
-Each student object in the array will have the following structure:
+Each student will have the following structure:
 ```json
 {
     "name": "string",
