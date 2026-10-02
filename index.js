@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
     res.send("Hello");
 })
 
-// ==================== Student Model =================================
+// ==================== Student Model ====================================
 
 const studentSchema = new mongoose.Schema({
     name: {
@@ -36,7 +36,7 @@ const studentSchema = new mongoose.Schema({
 const Student = mongoose.model("Student", studentSchema);
 
 module.exports = Student;
-// ==================== Create Route ===================================
+// ==================== Create Route =============================================
 
 app.post("/api/students", async (req, res) => {
     try {
@@ -54,7 +54,7 @@ app.post("/api/students", async (req, res) => {
             });
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         if (!emailRegex.test(email)) {
             return res.status(400).json({
